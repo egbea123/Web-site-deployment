@@ -2,20 +2,20 @@
 #Copy war files from Jenkins server to Tomcat server
 - name: Grant user permission read and write to war file
   file:
-    path: /var/lib/jenkins/workspace/Ansible-Tomcat_Deployment/Maven_code_build_job/target 
+    path: /var/lib/jenkins/workspace/Ansible-Tomcat-deploy/target
     state: directory
     mode: u=rwX,g=rX,o=rX
     recurse: true
 
 - name: Copy war file
   copy: 
-    src: /var/lib/jenkins/workspace/Ansible-Tomcat_Deployment/Maven_code_build_job/target/mvn-hello-world.war 
+    src: /var/lib/jenkins/workspace/Ansible-Tomcat-deploy/target/SampleWebApplication.war
     dest: /opt/tomcat/webapps/
     force: yes
 
 - name: Copy site message 
   copy: 
-    src: /var/lib/jenkins/workspace/Ansible-Tomcat_Deployment/Maven_code_build_job/target/mvn-hello-world
+    src:  /var/lib/jenkins/workspace/Ansible-Tomcat-deploy/target/SampleWebApplication
     dest: /opt/tomcat/webapps 
     force: yes
 
